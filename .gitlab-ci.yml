@@ -1,0 +1,31 @@
+stages:
+  - plan
+  - apply
+
+image:
+  name: hashicorp/terraform:latest
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+before_script:
+  - rm -rf .terraform
+  - terraform --version
+  - terraform init
+  - apk add bash
+
+plan:
+  stage: plan
+  script:
+    -terraform plan -out "planfile"
+  artifacts:
+    paths:
+      - planfile
+  tags:
+    - lq
+apply:
+  stage: apply
+  dependencies:
+    - plan
+  tags:
+    - lq
