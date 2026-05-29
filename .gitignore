@@ -8,3 +8,30 @@ override.tf.json
 .terraformrc
 terraform.rc
 .DS_Store
+
+# Sensitive files - NEVER commit
+terraform.tfvars
+terraform.tfvars.json
+*.tfvars
+*.tfvars.json
+.env
+.env.local
+.env*.local
+secrets/
+*.key
+*.pem
+kubeconfig
+kubeconfig-*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.backup
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
